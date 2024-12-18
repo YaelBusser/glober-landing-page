@@ -10,19 +10,11 @@ import * as THREE from "three";
 
 const RotatingCameraInside = () => {
     const cameraRef = useRef();
-    const [targetRotation, setTargetRotation] = useState(0);
-    const elapsed = useRef(0);
 
-    useFrame((state, delta) => {
+    useFrame(() => {
         if (cameraRef.current) {
-            elapsed.current += delta;
 
-            if (elapsed.current >= 5) {
-                setTargetRotation((prev) => prev - Math.PI / 2); // 90° en radians
-                elapsed.current = 0;
-            }
-
-            cameraRef.current.rotation.y += (targetRotation - cameraRef.current.rotation.y) * 0.005;
+            cameraRef.current.rotation.y -= 0.005;
         }
     });
 

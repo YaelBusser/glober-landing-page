@@ -1,7 +1,15 @@
+"use client";
 import styles from "./page.module.scss";
 import Hero from "@/components/three/scenes/Hero";
+import {useState} from "react";
+import {TextField} from "@mui/material";
 
 export default function Home() {
+    const [isMenu, setIsMenu] = useState(false);
+
+    const [nom, setNom] = useState("");
+    const [prenom, setPrenom] = useState("");
+    const [email, setEmail] = useState("");
     return (
         <>
             <div className={styles.hero}>
@@ -49,9 +57,61 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+            <div className={styles.centerFullScreen}>
+                <div className={`${styles.fullScreen} ${isMenu && styles.animationfullScreen}`}>
+                    <button className={styles.cancel} onClick={() => setIsMenu(false)}>x</button>
+                    <form>
+                        <TextField
+                            label="Nom"
+                            variant="standard"
+                            fullWidth
+                            value={nom}
+                            onChange={(e) => setNom(e.target.value)}
+                            required
+                            className={styles.textFied}
+                            style={{color: "red"}}
+                            sx={{
+                                '& .MuiInputLabel-root': {color: 'white'},
+                                '& .MuiInput-underline:before': {borderBottomColor: 'white'},
+                                '&:hover .MuiInput-underline:before': {borderBottomColor: 'white'},
+                                '& .MuiInput-underline:after': {borderBottomColor: 'white'},
+                            }}
+                        />
+                        <TextField
+                            label="Nom"
+                            variant="standard"
+                            fullWidth
+                            value={prenom}
+                            onChange={(e) => setPrenom(e.target.value)}
+                            required
+                            sx={{
+                                '& .MuiInputLabel-root': {color: 'white'},
+                                '& .MuiInput-underline:before': {borderBottomColor: 'white'},
+                                '&:hover .MuiInput-underline:before': {borderBottomColor: 'white'},
+                                '& .MuiInput-underline:after': {borderBottomColor: 'white'},
+                            }}
+                        />
+                        <TextField
+                            label="Email"
+                            variant="standard"
+                            type="email"
+                            fullWidth
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            sx={{
+                                '& .MuiInputLabel-root': {color: 'white'},
+                                '& .MuiInput-underline:before': {borderBottomColor: 'white'},
+                                '&:hover .MuiInput-underline:before': {borderBottomColor: 'white'},
+                                '& .MuiInput-underline:after': {borderBottomColor: 'white'},
+                            }}
+                            required
+                        />
+                    </form>
+                </div>
+            </div>
             <div className={styles.wrapperButton}>
-                <a className={styles.cta} href="#">
-                    <span className={styles.spanButton}>Découvrir</span>
+                <a className={`${styles.cta}`} href="#" onClick={() => setIsMenu(true)}>
+                    <span className={`${styles.spanButton}`}>Découvrir</span>
                     <span className={styles.spanButton}>
                       <svg width="66px" height="43px" viewBox="0 0 66 43" version="1.1">
                         <g id="arrow" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
